@@ -1,12 +1,10 @@
 package springbootapp.controllers;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 import springbootapp.exceptions.NotFoundException;
 import springbootapp.models.Product;
-import springbootapp.models.SingleProduct;
+import springbootapp.models.ProductRequest;
 import springbootapp.services.ProductService;
 
 import java.util.List;
@@ -27,7 +25,23 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public SingleProduct findById(@PathVariable Integer id) throws NotFoundException {
+    public Product findById(@PathVariable Integer id) throws NotFoundException {
         return productService.findById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Integer id) {
+        productService.delete(id);
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Product insert(ProductRequest productRequest) throws NotFoundException {
+        return productService.insert(productRequest);
+    }
+
+    @PutMapping("/{id}")
+    public Product update(@PathVariable Integer id, @RequestBody ProductRequest productRequest) throws NotFoundException {
+        return productService.update(id, productRequest);
     }
 }

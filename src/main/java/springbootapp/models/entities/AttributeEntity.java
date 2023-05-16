@@ -15,5 +15,4 @@ public class AttributeEntity {
     @Basic
     @Column(name = "name", nullable = false, length = 100)
     private String name;
-
 }

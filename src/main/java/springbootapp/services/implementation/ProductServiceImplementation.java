@@ -4,7 +4,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import springbootapp.exceptions.NotFoundException;
 import springbootapp.models.Product;
+import springbootapp.models.ProductRequest;
 import springbootapp.models.SingleProduct;
+import springbootapp.models.entities.ProductEntity;
 import springbootapp.repositories.ProductEntityRepository;
 import springbootapp.services.ProductService;
 
@@ -29,7 +31,30 @@ public class ProductServiceImplementation implements ProductService {
     }
 
     @Override
-    public SingleProduct findById(Integer id) throws NotFoundException {
+    public Product findById(Integer id) throws NotFoundException {
         return modelMapper.map(repository.findById(id).orElseThrow(NotFoundException::new), SingleProduct.class);
     }
+
+    @Override
+    public Product update(Integer id, ProductRequest productRequest) throws NotFoundException {
+        ProductEntity productEntity = modelMapper.map(productRequest, ProductEntity.class);
+        productEntity.setId(id);
+        productEntity = repository.saveAndFlush(productEntity);
+        return findById(productEntity.getId());
+    }
+
+    @Override
+    public Product insert(ProductRequest productRequest) throws NotFoundException {
+        ProductEntity productEntity = modelMapper.map(productRequest, ProductEntity.class);
+        productEntity.setId(null);
+        productEntity = repository.saveAndFlush(productEntity);
+        return findById(productEntity.getId());
+    }
+
+    @Override
+    public void delete(Integer id) {
+        repository.deleteById(id);
+    }
+
+
 }
