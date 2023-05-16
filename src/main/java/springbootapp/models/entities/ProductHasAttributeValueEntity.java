@@ -2,12 +2,12 @@ package springbootapp.models.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import springbootapp.base.BaseEntity;
 
 @Data
 @Entity
 @Table(name = "product_has_attribute_value")
-@IdClass(ProductHasAttributeValueEntityPK.class)
-public class ProductHasAttributeValueEntity {
+public class ProductHasAttributeValueEntity implements BaseEntity<Integer> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
@@ -21,6 +21,7 @@ public class ProductHasAttributeValueEntity {
     @Column(name = "attribute_value_id", nullable = false)
     private Integer attributeValueId;
 
+    //TODO: Check how to show this connections with Andjelina
 //    @ManyToOne
 //    @JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false)
 //    private ProductEntity productByProductId;

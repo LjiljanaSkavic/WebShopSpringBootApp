@@ -2,12 +2,12 @@ package springbootapp.models.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import springbootapp.base.BaseEntity;
 
 @Data
 @Entity
 @Table(name = "category_has_attribute")
-@IdClass(springbootapp.models.entities.CategoryHasAttributeEntityPK.class)
-public class CategoryHasAttributeEntity {
+public class CategoryHasAttributeEntity implements BaseEntity<Integer> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
@@ -23,6 +23,7 @@ public class CategoryHasAttributeEntity {
     @Column(name = "attribute_id", nullable = false)
     private Integer attributeId;
 
+    //TODO: Check how to show this connections with Andjelina
 //    @ManyToOne
 //    @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
 //    private CategoryEntity categoryByCategoryId;

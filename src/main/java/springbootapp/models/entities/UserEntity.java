@@ -2,14 +2,15 @@ package springbootapp.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Data;
+import springbootapp.base.BaseEntity;
 
 import java.util.List;
 
 @Data
 @Entity
 @Table(name = "user")
-public class UserEntity {
+public class UserEntity implements BaseEntity<Integer> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)

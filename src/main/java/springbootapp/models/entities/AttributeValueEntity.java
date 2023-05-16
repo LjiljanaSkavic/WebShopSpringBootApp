@@ -1,12 +1,13 @@
 package springbootapp.models.entities;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Data;
+import springbootapp.base.BaseEntity;
 
 @Data
 @Entity
 @Table(name = "attribute_value")
-public class AttributeValueEntity {
+public class AttributeValueEntity implements BaseEntity<Integer> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)

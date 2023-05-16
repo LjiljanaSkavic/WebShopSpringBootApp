@@ -3,13 +3,14 @@ package springbootapp.models.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+import springbootapp.base.BaseEntity;
 
 import java.util.List;
 
 @Data
 @Entity
 @Table(name = "country")
-public class CountryEntity {
+public class CountryEntity implements BaseEntity<Integer> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)

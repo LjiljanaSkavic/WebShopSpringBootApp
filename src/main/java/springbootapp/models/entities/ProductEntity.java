@@ -2,11 +2,12 @@ package springbootapp.models.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import springbootapp.base.BaseEntity;
 
 @Data
 @Entity
 @Table(name = "product")
-public class ProductEntity {
+public class ProductEntity implements BaseEntity<Integer> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
