@@ -24,11 +24,11 @@ public class CategoryHasAttributeEntity implements BaseEntity<Integer> {
     private Integer attributeId;
 
     //TODO: Check how to show this connections with Andjelina
-//    @ManyToOne
+//    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
 //    private CategoryEntity categoryByCategoryId;
 //
-//    @ManyToOne
+//    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "attribute_id", referencedColumnName = "id", nullable = false)
 //    private AttributeEntity attributeByAttributeId;
 }
