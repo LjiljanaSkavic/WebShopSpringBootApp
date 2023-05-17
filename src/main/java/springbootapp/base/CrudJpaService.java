@@ -5,6 +5,8 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import lombok.Getter;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import springbootapp.exceptions.NotFoundException;
 
@@ -33,10 +35,10 @@ public class CrudJpaService<E extends BaseEntity<ID>, ID extends Serializable> i
         return repository.findAll().stream().map(e -> modelMapper.map(e, resultDtoClass)).collect(Collectors.toList());
     }
 
-//    @Override
-//    public <T> Page<T> findAll(Pageable page, Class<T> resultDtoClass) {
-//        return repository.findAll(page).map(e -> modelMapper.map(e, resultDtoClass));
-//    }
+    @Override
+    public <T> Page<T> findAll(Pageable page, Class<T> resultDtoClass) {
+        return repository.findAll(page).map(e -> modelMapper.map(e, resultDtoClass));
+    }
 
     @Override
     public <T> T findById(ID id, Class<T> resultDtoClass) {
