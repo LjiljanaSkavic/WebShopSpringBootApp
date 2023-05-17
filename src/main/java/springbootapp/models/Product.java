@@ -1,6 +1,8 @@
 package springbootapp.models;
 
 import lombok.Data;
+import springbootapp.models.entities.CategoryEntity;
+import springbootapp.models.entities.UserEntity;
 
 @Data
 public class Product {
@@ -9,4 +11,6 @@ public class Product {
     private String description;
     private Double price;
     private Boolean isNew;
+    private UserEntity sellerUser;
+    private CategoryEntity category;
 }

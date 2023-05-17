@@ -5,8 +5,6 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import lombok.Getter;
 import org.modelmapper.ModelMapper;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import springbootapp.exceptions.NotFoundException;
 
@@ -35,10 +33,10 @@ public class CrudJpaService<E extends BaseEntity<ID>, ID extends Serializable> i
         return repository.findAll().stream().map(e -> modelMapper.map(e, resultDtoClass)).collect(Collectors.toList());
     }
 
-    @Override
-    public <T> Page<T> findAll(Pageable page, Class<T> resultDtoClass) {
-        return repository.findAll(page).map(e -> modelMapper.map(e, resultDtoClass));
-    }
+//    @Override
+//    public <T> Page<T> findAll(Pageable page, Class<T> resultDtoClass) {
+//        return repository.findAll(page).map(e -> modelMapper.map(e, resultDtoClass));
+//    }
 
     @Override
     public <T> T findById(ID id, Class<T> resultDtoClass) {
@@ -46,13 +44,13 @@ public class CrudJpaService<E extends BaseEntity<ID>, ID extends Serializable> i
     }
 
     @Override
-    public <T, U> T insert(U object, Class<T> resultDtoClass) {
+    public <T, U> T insert(U object, Class<T> resultDTOClass) {
+
         E entity = modelMapper.map(object, entityClass);
         entity.setId(null);
-        //TODO: The program crashes because of next line, fix it
-        //entity = repository.saveAllAndFlush(entity);
+        entity = repository.saveAndFlush(entity);
         entityManager.refresh(entity);
-        return modelMapper.map(entity, resultDtoClass);
+        return modelMapper.map(entity, resultDTOClass);
     }
 
     @Override
@@ -62,8 +60,7 @@ public class CrudJpaService<E extends BaseEntity<ID>, ID extends Serializable> i
         }
         E entity = modelMapper.map(object, entityClass);
         entity.setId(id);
-        //TODO: The program crashes because of next line, fix it
-        //entity = repository.saveAllAndFlush(entity);
+        entity = repository.saveAndFlush(entity);
         entityManager.refresh(entity);
         return modelMapper.map(entity, resultDtoClass);
     }
