@@ -1,13 +1,6 @@
 package springbootapp.services;
 
-import springbootapp.exceptions.NotFoundException;
-import springbootapp.models.Category;
+import springbootapp.base.CrudService;
 
-import java.util.List;
-
-public interface CategoryService {
-    List<Category> findAll();
-
-    Category findById(Integer id) throws NotFoundException;
-
+public interface CategoryService extends CrudService<Integer> {
 }

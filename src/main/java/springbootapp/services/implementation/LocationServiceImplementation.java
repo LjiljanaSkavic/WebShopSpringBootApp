@@ -1,35 +1,16 @@
 package springbootapp.services.implementation;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
-import springbootapp.exceptions.NotFoundException;
-import springbootapp.models.Location;
-import springbootapp.models.SingleLocation;
-import springbootapp.repositories.LocationEntityRepository;
+import springbootapp.base.CrudJpaService;
+import springbootapp.models.entities.LocationEntity;
 import springbootapp.services.LocationService;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 @Service
-public class LocationServiceImplementation implements LocationService {
+public class LocationServiceImplementation extends CrudJpaService<LocationEntity, Integer> implements LocationService {
 
-    private ModelMapper modelMapper;
-    private final LocationEntityRepository repository;
-
-    public LocationServiceImplementation(LocationEntityRepository repository, ModelMapper modelMapper) {
-        this.repository = repository;
-        this.modelMapper = modelMapper;
+    public LocationServiceImplementation(JpaRepository<LocationEntity, Integer> repository, ModelMapper modelMapper) {
+        super(repository, modelMapper, LocationEntity.class);
     }
-
-    @Override
-    public List<Location> findAll() {
-        return repository.findAll().stream().map(locationEntity -> modelMapper.map(locationEntity, Location.class)).collect(Collectors.toList());
-    }
-
-    @Override
-    public SingleLocation findById(Integer id) throws NotFoundException {
-        return modelMapper.map(repository.findById(id).orElseThrow(NotFoundException::new), SingleLocation.class);
-    }
-
 }
