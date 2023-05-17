@@ -10,7 +10,6 @@ import springbootapp.services.CountryService;
 @RestController
 @RequestMapping("/countries")
 public class CountryController extends CrudController<Integer, CountryRequest, Country> {
-
     public CountryController(CountryService countryService) {
         super(Country.class, countryService);
     }

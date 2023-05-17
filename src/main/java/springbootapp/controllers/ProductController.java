@@ -10,7 +10,6 @@ import springbootapp.services.ProductService;
 @RestController
 @RequestMapping("/products")
 public class ProductController extends CrudController<Integer, ProductRequest, Product> {
-
     public ProductController(ProductService productService) {
         super(Product.class, productService);
     }

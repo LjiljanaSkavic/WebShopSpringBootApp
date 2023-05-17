@@ -10,7 +10,6 @@ import springbootapp.services.LocationService;
 @RestController
 @RequestMapping("/locations")
 public class LocationController extends CrudController<Integer, LocationRequest, Location> {
-
     public LocationController(LocationService locationService) {
         super(Location.class, locationService);
     }

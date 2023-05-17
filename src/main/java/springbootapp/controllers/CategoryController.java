@@ -10,7 +10,6 @@ import springbootapp.services.CategoryService;
 @RestController
 @RequestMapping("/categories")
 public class CategoryController extends CrudController<Integer, CategoryRequest, Category> {
-
     public CategoryController(CategoryService categoryService) {
         super(Category.class, categoryService);
     }

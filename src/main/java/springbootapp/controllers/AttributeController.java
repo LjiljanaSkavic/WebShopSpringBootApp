@@ -10,7 +10,6 @@ import springbootapp.services.AttributeService;
 @RestController
 @RequestMapping("/attributes")
 public class AttributeController extends CrudController<Integer, AttributeRequest, Attribute> {
-    
     public AttributeController(AttributeService attributeService) {
         super(Attribute.class, attributeService);
     }
