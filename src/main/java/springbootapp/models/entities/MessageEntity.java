@@ -21,7 +21,7 @@ public class MessageEntity implements BaseEntity<Integer> {
     @Column(name = "is_read", nullable = false)
     private Boolean isRead;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "sender_user_id", referencedColumnName = "id", nullable = false)
     private UserEntity senderUser;
 

@@ -17,7 +17,7 @@ public class CategoryEntity implements BaseEntity<Integer> {
     @Column(name = "name", nullable = false, length = 100)
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "subcategory_id", referencedColumnName = "id", nullable = true)
     private CategoryEntity subcategory;
 

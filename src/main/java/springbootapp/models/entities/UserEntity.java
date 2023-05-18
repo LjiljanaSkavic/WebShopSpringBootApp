@@ -44,11 +44,11 @@ public class UserEntity implements BaseEntity<Integer> {
 //    @OneToMany(mappedBy = "sellerUser")
 //    private List<ProductEntity> productsById;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "country_id", referencedColumnName = "id", nullable = false)
     private CountryEntity country;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "location_id", referencedColumnName = "id", nullable = false)
     private LocationEntity location;
 }

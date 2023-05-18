@@ -34,7 +34,7 @@ public class LocationEntity implements BaseEntity<Integer> {
     @OneToMany(mappedBy = "location")
     private List<UserEntity> usersById;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "country_id", referencedColumnName = "id", nullable = false)
     private CountryEntity country;
 

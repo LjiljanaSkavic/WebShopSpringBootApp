@@ -34,7 +34,7 @@ public class ProductEntity implements BaseEntity<Integer> {
     private UserEntity sellerUser;
 
     //TODO: Check if i need all this connections
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
     private CategoryEntity category;
 }

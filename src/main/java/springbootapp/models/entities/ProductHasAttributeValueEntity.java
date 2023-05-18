@@ -22,11 +22,11 @@ public class ProductHasAttributeValueEntity implements BaseEntity<Integer> {
     private Integer attributeValueId;
 
     //TODO: Check how to show this connections with Andjelina
-//    @ManyToOne(fetch = FetchType.LAZY)
+//    @ManyToOne
 //    @JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false)
 //    private ProductEntity productByProductId;
 //
-//    @ManyToOne(fetch = FetchType.LAZY)
+//    @ManyToOne
 //    @JoinColumn(name = "attribute_value_id", referencedColumnName = "id", nullable = false)
 //    private AttributeValueEntity productByAttributeValueId;
 }
