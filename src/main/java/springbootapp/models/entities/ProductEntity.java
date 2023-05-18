@@ -29,7 +29,7 @@ public class ProductEntity implements BaseEntity<Integer> {
     @Column(name = "is_new", nullable = false)
     private Boolean isNew;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "seller_user_id", referencedColumnName = "id", nullable = false)
     private UserEntity sellerUser;
 

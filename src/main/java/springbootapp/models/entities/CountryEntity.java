@@ -1,5 +1,6 @@
 package springbootapp.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import springbootapp.base.BaseEntity;
@@ -20,8 +21,10 @@ public class CountryEntity implements BaseEntity<Integer> {
     private String name;
 
     @OneToMany(mappedBy = "country")
+    @JsonIgnore
     private List<LocationEntity> locations;
 
     @OneToMany(mappedBy = "country")
+    @JsonIgnore
     private List<UserEntity> users;
 }

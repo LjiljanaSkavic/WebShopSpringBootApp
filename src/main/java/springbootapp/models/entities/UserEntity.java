@@ -1,5 +1,6 @@
 package springbootapp.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import springbootapp.base.BaseEntity;
@@ -41,12 +42,15 @@ public class UserEntity implements BaseEntity<Integer> {
 
 
     @OneToMany(mappedBy = "senderUser")
+    @JsonIgnore
     private List<MessageEntity> messagesById;
 
     @OneToMany(mappedBy = "sellerUser")
+    @JsonIgnore
     private List<ProductEntity> productsById;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "country_id", referencedColumnName = "id", nullable = false)
     private CountryEntity country;
 

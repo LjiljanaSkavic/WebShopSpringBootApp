@@ -1,6 +1,7 @@
 package springbootapp.models;
 
 import lombok.Data;
+import springbootapp.models.entities.CountryEntity;
 
 @Data
 public class Location {
@@ -9,4 +10,5 @@ public class Location {
     private Integer streetNumber;
     private String postalCode;
     private String city;
+    private CountryEntity country;
 }
