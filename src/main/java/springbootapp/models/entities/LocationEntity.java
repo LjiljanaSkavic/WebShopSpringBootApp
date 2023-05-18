@@ -1,6 +1,5 @@
 package springbootapp.models.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import springbootapp.base.BaseEntity;
@@ -33,7 +32,6 @@ public class LocationEntity implements BaseEntity<Integer> {
     private String city;
 
     @OneToMany(mappedBy = "location")
-    @JsonIgnore
     private List<UserEntity> usersById;
 
     @ManyToOne(fetch = FetchType.LAZY)
