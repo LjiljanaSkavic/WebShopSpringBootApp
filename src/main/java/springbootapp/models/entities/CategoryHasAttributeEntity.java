@@ -13,22 +13,20 @@ public class CategoryHasAttributeEntity implements BaseEntity<Integer> {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "category_id", nullable = false)
     private Integer categoryId;
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "attribute_id", nullable = false)
     private Integer attributeId;
 
     //TODO: Check how to show this connections with Andjelina
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
-//    private CategoryEntity categoryByCategoryId;
-//
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "attribute_id", referencedColumnName = "id", nullable = false)
-//    private AttributeEntity attributeByAttributeId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
+    private CategoryEntity categoryByCategoryId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "attribute_id", referencedColumnName = "id", nullable = false)
+    private AttributeEntity attributeByAttributeId;
 }
