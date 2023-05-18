@@ -21,7 +21,6 @@ public class CategoryHasAttributeEntity implements BaseEntity<Integer> {
     @Column(name = "attribute_id", nullable = false)
     private Integer attributeId;
 
-    //TODO: Check how to show this connections with Andjelina
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
     private CategoryEntity categoryByCategoryId;

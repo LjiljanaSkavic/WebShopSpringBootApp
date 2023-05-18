@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import springbootapp.base.BaseEntity;
 
+import java.util.List;
+
 @Data
 @Entity
 @Table(name = "user")
@@ -37,12 +39,12 @@ public class UserEntity implements BaseEntity<Integer> {
     @Column(name = "is_logged_in", nullable = false)
     private Boolean isLoggedIn;
 
-    //TODO: Check if i need this
-//    @OneToMany(mappedBy = "senderUser")
-//    private List<MessageEntity> messagesById;
 
-//    @OneToMany(mappedBy = "sellerUser")
-//    private List<ProductEntity> productsById;
+    @OneToMany(mappedBy = "senderUser")
+    private List<MessageEntity> messagesById;
+
+    @OneToMany(mappedBy = "sellerUser")
+    private List<ProductEntity> productsById;
 
     @ManyToOne
     @JoinColumn(name = "country_id", referencedColumnName = "id", nullable = false)

@@ -33,7 +33,6 @@ public class ProductEntity implements BaseEntity<Integer> {
     @JoinColumn(name = "seller_user_id", referencedColumnName = "id", nullable = false)
     private UserEntity sellerUser;
 
-    //TODO: Check if i need all this connections
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
     private CategoryEntity category;

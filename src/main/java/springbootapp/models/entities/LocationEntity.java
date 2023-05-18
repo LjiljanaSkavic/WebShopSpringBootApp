@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import springbootapp.base.BaseEntity;
 
+import java.util.List;
+
 @Data
 @Entity
 @Table(name = "location")
@@ -29,9 +31,8 @@ public class LocationEntity implements BaseEntity<Integer> {
     @Column(name = "city", nullable = false, length = 45)
     private String city;
 
-    //TODO: Check if i need this
-//    @OneToMany(mappedBy = "location")
-//    private List<UserEntity> usersById;
+    @OneToMany(mappedBy = "location")
+    private List<UserEntity> usersById;
 
     @ManyToOne
     @JoinColumn(name = "country_id", referencedColumnName = "id", nullable = false)
