@@ -11,6 +11,8 @@ public class Product {
     private String description;
     private Double price;
     private Boolean isNew;
+    private String image;
+    private Boolean isDeleted;
     private UserEntity sellerUser;
     private CategoryEntity category;
 }

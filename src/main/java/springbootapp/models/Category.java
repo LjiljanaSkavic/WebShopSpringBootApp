@@ -7,5 +7,5 @@ import springbootapp.models.entities.CategoryEntity;
 public class Category {
     private Integer id;
     private String name;
-    private CategoryEntity subcategory;
+    private CategoryEntity parentCategory;
 }
