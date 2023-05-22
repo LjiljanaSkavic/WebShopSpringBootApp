@@ -1,9 +1,6 @@
 package springbootapp.controllers;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import springbootapp.base.CrudController;
 import springbootapp.models.Category;
 import springbootapp.models.CategoryRequest;
@@ -21,6 +18,7 @@ public class CategoryController extends CrudController<Integer, CategoryRequest,
         this.categoryService = categoryService;
     }
 
+    @CrossOrigin
     @GetMapping("/{id}/children")
     List<Category> getCategoryChildren(@PathVariable Integer id) {
         return categoryService.getAllByParentCategoryId(id);
