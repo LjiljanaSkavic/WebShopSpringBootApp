@@ -37,9 +37,16 @@ public class UserEntity implements BaseEntity<Integer> {
     private String email;
 
     @Basic
+    @Column(name = "activation_pin")
+    private Integer activationPin;
+
+    @Basic
     @Column(name = "is_logged_in", nullable = false)
     private Boolean isLoggedIn;
 
+    @Basic
+    @Column(name = "is_activated", nullable = false)
+    private Boolean isActivated;
 
     @OneToMany(mappedBy = "senderUser")
     @JsonIgnore

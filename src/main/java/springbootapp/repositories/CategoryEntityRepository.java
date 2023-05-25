@@ -9,7 +9,10 @@ import java.util.List;
 
 public interface CategoryEntityRepository extends JpaRepository<CategoryEntity, Integer> {
 
-    @Query("select c from CategoryEntity c where c.parentCategory.id=:parent_category_id")
-    List<CategoryEntity> getAllByParentCategoryId(@Param("parent_category_id") Integer parent_category_id);
+    @Query("select c from CategoryEntity c where c.parentCategory.id=:parentCategoryId")
+    List<CategoryEntity> getAllByParentCategoryId(@Param("parentCategoryId") Integer parent_category_id);
+
+    @Query("select c from CategoryEntity c where c.parentCategory=null")
+    List<CategoryEntity> getAllParentCategories();
 
 }

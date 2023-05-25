@@ -24,8 +24,15 @@ public class CategoryServiceImplementation extends CrudJpaService<CategoryEntity
     }
 
     @Override
-    public List<Category> getAllByParentCategoryId(Integer parent_category_id) {
-        //TODO: Find way how to map to CategoryDetails
-        return this.repository.getAllByParentCategoryId(parent_category_id).stream().map(e -> modelMapper.map(e, Category.class)).collect(Collectors.toList());
+    public List<Category> getAllByParentCategoryId(Integer parentCategoryId) {
+//        List<Category> parentCategories = this.repository.getAllParentCategories().stream().map(e -> modelMapper.map(e, Category.class)).collect(Collectors.toList());
+//        ArrayList<CategoryDetails> list = new ArrayList<CategoryDetails>();
+//        for (Category parentCategory : parentCategories) {
+//            list.add(new CategoryDetails(parentCategory.getId(), parentCategory.getName(), (CategoryEntity[]) this.repository.getAllByParentCategoryId(parentCategory.getId()).stream().toArray()));
+//        }
+//        System.out.println(parentCategories);
+//        //TODO: Find way how to map to CategoryDetails
+//        System.out.println(this.repository.getAllByParentCategoryId(parent_category_id));
+        return this.repository.getAllByParentCategoryId(parentCategoryId).stream().map(e -> modelMapper.map(e, Category.class)).collect(Collectors.toList());
     }
 }
