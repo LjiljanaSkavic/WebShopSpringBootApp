@@ -20,5 +20,4 @@ public class CategoryEntity implements BaseEntity<Integer> {
     @ManyToOne
     @JoinColumn(name = "parent_category_id", referencedColumnName = "id", nullable = true)
     private CategoryEntity parentCategory;
-
 }

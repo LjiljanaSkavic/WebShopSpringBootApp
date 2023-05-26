@@ -12,7 +12,7 @@ public interface CategoryEntityRepository extends JpaRepository<CategoryEntity, 
     @Query("select c from CategoryEntity c where c.parentCategory.id=:parentCategoryId")
     List<CategoryEntity> getAllByParentCategoryId(@Param("parentCategoryId") Integer parent_category_id);
 
-    @Query("select c from CategoryEntity c where c.parentCategory=null")
-    List<CategoryEntity> getAllParentCategories();
+    @Query("select c from CategoryEntity c")
+    List<CategoryEntity> getAllCustomMethod();
 
 }
