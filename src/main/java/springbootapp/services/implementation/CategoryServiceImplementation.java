@@ -33,8 +33,6 @@ public class CategoryServiceImplementation extends CrudJpaService<CategoryEntity
 
     @Override
     public List<CategoryWithChildren> getAllCustomMethod() {
-        List<CategoryEntity> all = this.repository.getAllCustomMethod().stream().map(e -> modelMapper.map(e, CategoryEntity.class)).collect(Collectors.toList());
-
         List<CategoryWithParentId> allCategories = this.repository.getAllCustomMethod().stream().map(e -> modelMapper.map(e, CategoryWithParentId.class)).collect(Collectors.toList());
         List<CategoryWithParentId> root = allCategories.stream().filter(categoryWithParentId -> categoryWithParentId.getParentCategoryId() == null).collect(Collectors.toList());
 
@@ -59,17 +57,5 @@ public class CategoryServiceImplementation extends CrudJpaService<CategoryEntity
             dto.addChild(fillChildren(children.get(i), allCategories));
         }
         return dto;
-    }
-
-    private List<CategoryWithParentId> getAllMapped(List<CategoryEntity> all) {
-        return all.stream()
-                .map(category -> {
-                    Integer parentCategory = null;
-                    if (category.getParentCategory() != null) {
-                        parentCategory = category.getParentCategory().getId();
-                    }
-                    return new CategoryWithParentId(category.getId(), category.getName(), parentCategory);
-                })
-                .collect(Collectors.toList());
     }
 }
