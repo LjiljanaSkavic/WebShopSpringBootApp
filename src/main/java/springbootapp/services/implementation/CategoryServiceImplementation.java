@@ -34,28 +34,28 @@ public class CategoryServiceImplementation extends CrudJpaService<CategoryEntity
     @Override
     public List<CategoryWithChildren> getAllCustomMethod() {
         List<CategoryWithParentId> allCategories = this.repository.getAllCustomMethod().stream().map(e -> modelMapper.map(e, CategoryWithParentId.class)).collect(Collectors.toList());
-        List<CategoryWithParentId> root = allCategories.stream().filter(categoryWithParentId -> categoryWithParentId.getParentCategoryId() == null).collect(Collectors.toList());
+        List<CategoryWithParentId> rootCategories = allCategories.stream().filter(categoryWithParentId -> categoryWithParentId.getParentCategoryId() == null).collect(Collectors.toList());
 
         List<CategoryWithChildren> result = new ArrayList<CategoryWithChildren>();
-        for (int i = 0; i < root.size(); i++) {
-            result.add(fillChildren(root.get(i), allCategories));
+        for (int i = 0; i < rootCategories.size(); i++) {
+            result.add(fillChildren(rootCategories.get(i), allCategories));
         }
         return result;
     }
 
     private CategoryWithChildren fillChildren(CategoryWithParentId parent, List<CategoryWithParentId> allCategories) {
-        var dto = new CategoryWithChildren();
-        dto.setId(parent.getId());
-        dto.setName(parent.getName());
+        CategoryWithChildren categoryWithChildren = new CategoryWithChildren();
+        categoryWithChildren.setId(parent.getId());
+        categoryWithChildren.setName(parent.getName());
 
         List<CategoryWithChildren> childrenEmptyList = new ArrayList<CategoryWithChildren>();
-        dto.setChildren(childrenEmptyList);
+        categoryWithChildren.setChildren(childrenEmptyList);
 
         List<CategoryWithParentId> children = allCategories.stream().filter(x -> x.getParentCategoryId() == parent.getId()).collect(Collectors.toList());
 
         for (int i = 0; i < children.size(); i++) {
-            dto.addChild(fillChildren(children.get(i), allCategories));
+            categoryWithChildren.addChild(fillChildren(children.get(i), allCategories));
         }
-        return dto;
+        return categoryWithChildren;
     }
 }
