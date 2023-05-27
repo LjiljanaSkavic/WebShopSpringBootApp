@@ -12,6 +12,18 @@ public interface ProductEntityRepository extends JpaRepository<ProductEntity, In
     @Query("select p from ProductEntity p where p.category.id=:id")
     List<ProductEntity> getByCategoryId(@Param("id") Integer id);
 
+    //TODO: Check how to write this correctly
+//    @Query("WITH RECURSIVE category_tree AS (" +
+//            "SELECT c.id FROM CategoryEntity c WHERE c.id=:id " +
+//            "UNION ALL " +
+//            "SELECT ce.id FROM CategoryEntity ce" +
+//            "JOIN category_tree ct ON c.parent_category_id = ct.id" +
+//            ")" +
+//            "SELECT p.*" +
+//            "FROM ProductEntity p" +
+//            "JOIN category_tree ct ON p.category_id = ct.id")
+//    List<ProductEntity> getAllByCategoryId(@Param("id") Integer id);
+
     @Query("select p from ProductEntity p where p.title LIKE CONCAT('%', :query ,'%')")
     List<ProductEntity> getByProductTitle(@Param("query") String query);
 
