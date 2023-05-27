@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface CategoryService extends CrudService<Integer> {
 
-    List<Category> getAllByParentCategoryId(Integer parent_category_id);
+    List<Category> getAllByParentCategoryId(Integer id);
 
     List<CategoryWithChildren> getAllCustomMethod();
 }

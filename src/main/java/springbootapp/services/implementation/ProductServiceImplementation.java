@@ -23,7 +23,17 @@ public class ProductServiceImplementation extends CrudJpaService<ProductEntity, 
     }
 
     @Override
-    public List<Product> getAllByCategory(Integer categoryId) {
-        return this.repository.getAllFromCategory(categoryId).stream().map(e -> modelMapper.map(e, Product.class)).collect(Collectors.toList());
+    public List<Product> getByCategoryId(Integer categoryId) {
+        return this.repository.getByCategoryId(categoryId).stream().map(e -> modelMapper.map(e, Product.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Product> getByProductTitle(String query) {
+        return this.repository.getByProductTitle(query).stream().map(e -> modelMapper.map(e, Product.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Product> getByCategoryIdAndProductTitle(Integer id, String query) {
+        return this.repository.getByCategoryIdAndProductTitle(id, query).stream().map(e -> modelMapper.map(e, Product.class)).collect(Collectors.toList());
     }
 }
