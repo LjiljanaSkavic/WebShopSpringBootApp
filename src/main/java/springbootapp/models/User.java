@@ -16,6 +16,5 @@ public class User {
     private LocationEntity location;
 
     public User() {
-
     }
 }
