@@ -7,7 +7,6 @@ import springbootapp.models.entities.LocationEntity;
 public class User {
     private Integer id;
     private String username;
-    private String password;
     private String firstName;
     private String lastName;
     private String email;
@@ -15,4 +14,8 @@ public class User {
     private Boolean isLoggedIn;
     private Boolean isActivated;
     private LocationEntity location;
+
+    public User() {
+
+    }
 }

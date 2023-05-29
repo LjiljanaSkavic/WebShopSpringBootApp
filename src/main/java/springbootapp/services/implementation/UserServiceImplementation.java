@@ -3,23 +3,27 @@ package springbootapp.services.implementation;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import springbootapp.base.CrudJpaService;
+import springbootapp.exceptions.NotFoundException;
+import springbootapp.models.User;
 import springbootapp.models.entities.UserEntity;
 import springbootapp.repositories.UserEntityRepository;
 import springbootapp.services.UserService;
 
 @Service
 public class UserServiceImplementation extends CrudJpaService<UserEntity, Integer> implements UserService {
+
+    UserEntityRepository repository;
+    ModelMapper modelMapper;
+
     public UserServiceImplementation(UserEntityRepository repository, ModelMapper modelMapper) {
         super(repository, modelMapper, UserEntity.class);
+        this.repository = repository;
+        this.modelMapper = modelMapper;
     }
 
-//    @Override
-//    public <T> List<T> findAll(Class<T> resultDtoClass) {
-//        System.out.println("RADI - pozvala se preklopljena metoda");
-//        TypeMap<UserEntity, User> propertyMapping = modelMapper.createTypeMap(UserEntity.class, User.class);
-//        propertyMapping
-//                .addMappings(mapper -> mapper.skip(User::setCountry))
-//                .addMappings(mapper -> mapper.skip(User::setLocation));
-//        return repository.findAll().stream().map(e -> modelMapper.map(e, resultDtoClass)).collect(Collectors.toList());
-//    }
+    @Override
+    public User getByUsernameAndPassword(String username, String password) throws NotFoundException {
+        return this.modelMapper.map(repository.getUserEntityByUsernameAndPassword(username, password).orElseThrow(NotFoundException::new), User.class);
+    }
+
 }

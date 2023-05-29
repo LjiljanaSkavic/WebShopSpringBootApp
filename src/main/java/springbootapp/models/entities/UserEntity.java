@@ -21,6 +21,7 @@ public class UserEntity implements BaseEntity<Integer> {
     private String username;
 
     @Basic
+    @JsonIgnore
     @Column(name = "password", nullable = false, length = 45)
     private String password;
 

@@ -13,5 +13,4 @@ public class UserController extends CrudController<Integer, UserRequest, User> {
     public UserController(UserService userService) {
         super(User.class, userService);
     }
-
 }
