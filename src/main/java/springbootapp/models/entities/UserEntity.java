@@ -21,7 +21,6 @@ public class UserEntity implements BaseEntity<Integer> {
     private String username;
 
     @Basic
-    @JsonIgnore
     @Column(name = "password", nullable = false, length = 45)
     private String password;
 
@@ -42,12 +41,12 @@ public class UserEntity implements BaseEntity<Integer> {
     private Integer activationPin;
 
     @Basic
-    @Column(name = "is_logged_in", nullable = false)
-    private Boolean isLoggedIn;
+    @Column(name = "is_logged_in")
+    private Boolean isLoggedIn = false;
 
     @Basic
-    @Column(name = "is_activated", nullable = false)
-    private Boolean isActivated;
+    @Column(name = "is_activated")
+    private Boolean isActivated = false;
 
     @OneToMany(mappedBy = "senderUser")
     @JsonIgnore
@@ -59,10 +58,10 @@ public class UserEntity implements BaseEntity<Integer> {
 
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "country_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "country_id", referencedColumnName = "id")
     private CountryEntity country;
 
     @ManyToOne
-    @JoinColumn(name = "location_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "location_id", referencedColumnName = "id")
     private LocationEntity location;
 }
