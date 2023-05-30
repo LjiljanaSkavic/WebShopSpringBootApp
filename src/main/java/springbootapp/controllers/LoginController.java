@@ -20,7 +20,12 @@ public class LoginController {
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
     public User update(@RequestBody LoginUser loginCredentials) throws NotFoundException {
-        System.out.println(loginCredentials);
         return this.userService.getByUsernameAndPassword(loginCredentials.getUsername(), loginCredentials.getPassword());
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void activate(@PathVariable Integer id) throws NotFoundException {
+        this.userService.loginUser(id);
     }
 }

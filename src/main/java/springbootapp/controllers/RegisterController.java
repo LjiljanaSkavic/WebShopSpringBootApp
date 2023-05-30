@@ -25,7 +25,12 @@ public class RegisterController {
     @ResponseStatus(HttpStatus.CREATED)
     public User insert(@RequestBody UserRequest user) throws NotFoundException {
         user.setActivationPin(this.sharedService.createActivationPin());
-        System.out.println(user);
         return this.userService.insert(user, User.class);
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void activate(@PathVariable Integer id) throws NotFoundException {
+        this.userService.activateUser(id);
     }
 }
