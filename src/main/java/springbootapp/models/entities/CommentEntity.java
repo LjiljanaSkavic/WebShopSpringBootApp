@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import springbootapp.base.BaseEntity;
 
+import java.util.Date;
+
 @Data
 @Entity
 @Table(name = "comment")
@@ -17,6 +19,18 @@ public class CommentEntity implements BaseEntity<Integer> {
     @Basic
     @Column(name = "content", nullable = false, length = 500)
     private String content;
+
+    @Basic
+    @Column(name = "is_modified", nullable = false)
+    private Boolean isModified = false;
+
+    @Basic
+    @Column(name = "is_deleted", nullable = false)
+    private Boolean isDeleted = false;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "date_time")
+    private Date date;
 
     @ManyToOne
     @JsonIgnore
