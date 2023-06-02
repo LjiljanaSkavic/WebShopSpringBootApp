@@ -6,6 +6,6 @@ import springbootapp.models.Comment;
 import java.util.List;
 
 public interface CommentService extends CrudService<Integer> {
-    public List<Comment> getAllCommentsByProductId(Integer productId);
+    List<Comment> getAllCommentsByProductId(Integer productId);
 
 }

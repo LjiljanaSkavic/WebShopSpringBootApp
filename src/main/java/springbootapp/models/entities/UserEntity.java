@@ -48,16 +48,16 @@ public class UserEntity implements BaseEntity<Integer> {
     @Column(name = "is_activated")
     private Boolean isActivated = false;
 
-    @OneToMany(mappedBy = "senderUser")
     @JsonIgnore
+    @OneToMany(mappedBy = "senderUser")
     private List<MessageEntity> messagesById;
 
-    @OneToMany(mappedBy = "sellerUser")
     @JsonIgnore
+    @OneToMany(mappedBy = "sellerUser")
     private List<ProductEntity> productsById;
 
-    @ManyToOne
     @JsonIgnore
+    @ManyToOne
     @JoinColumn(name = "country_id", referencedColumnName = "id")
     private CountryEntity country;
 

@@ -1,13 +1,15 @@
 package springbootapp.models;
 
-import java.util.Date;
+import lombok.Data;
 
+import java.sql.Timestamp;
+
+@Data
 public class Comment {
     private Integer id;
     private String content;
-    private Date date;
+    private Timestamp dateTime;
     private Boolean isModified;
-    private Integer isDeleted;
-
-    private User user;
+    private Boolean isDeleted;
+//    private UserEntity user;
 }

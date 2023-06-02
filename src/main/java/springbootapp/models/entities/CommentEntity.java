@@ -3,9 +3,11 @@ package springbootapp.models.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 import springbootapp.base.BaseEntity;
 
-import java.util.Date;
+import java.sql.Timestamp;
+
 
 @Data
 @Entity
@@ -28,17 +30,18 @@ public class CommentEntity implements BaseEntity<Integer> {
     @Column(name = "is_deleted", nullable = false)
     private Boolean isDeleted = false;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Basic
+    @DateTimeFormat
     @Column(name = "date_time")
-    private Date date;
+    private Timestamp dateTime;
 
-    @ManyToOne
     @JsonIgnore
+    @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false)
     private ProductEntity product;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     private UserEntity user;
-
 }
