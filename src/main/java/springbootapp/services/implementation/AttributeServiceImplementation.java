@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import springbootapp.base.CrudJpaService;
 import springbootapp.models.Attribute;
+import springbootapp.models.AttributeValueKeys;
 import springbootapp.models.entities.AttributeEntity;
 import springbootapp.repositories.AttributeEntityRepository;
 import springbootapp.services.AttributeService;
@@ -26,5 +27,11 @@ public class AttributeServiceImplementation extends CrudJpaService<AttributeEnti
     @Override
     public List<Attribute> getAllByCategoryId(Integer categoryId) {
         return this.repository.getAllByCategoryId(categoryId).stream().map(e -> modelMapper.map(e, Attribute.class)).collect(Collectors.toList());
+    }
+
+
+    @Override
+    public List<AttributeValueKeys> getAllByProductId(Integer productId) {
+        return this.repository.getAllByProductId(productId).stream().map(e -> modelMapper.map(e, AttributeValueKeys.class)).collect(Collectors.toList());
     }
 }
