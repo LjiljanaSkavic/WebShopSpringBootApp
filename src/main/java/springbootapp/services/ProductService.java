@@ -8,6 +8,8 @@ import java.util.List;
 public interface ProductService extends CrudService<Integer> {
     List<Product> getByCategoryId(Integer id);
 
+    List<Product> getBySellerId(Integer id);
+
     List<Product> getByProductTitle(String query);
 
     List<Product> getByCategoryIdAndProductTitle(Integer id, String query);

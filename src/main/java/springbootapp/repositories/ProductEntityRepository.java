@@ -29,4 +29,7 @@ public interface ProductEntityRepository extends JpaRepository<ProductEntity, In
 
     @Query("select p from ProductEntity p where p.title LIKE CONCAT('%', :query ,'%') and p.id=:id")
     List<ProductEntity> getByCategoryIdAndProductTitle(@Param("id") Integer id, @Param("query") String query);
+
+    @Query("select p from ProductEntity p where p.sellerUser.id=:id")
+    List<ProductEntity> getBySellerId(Integer id);
 }

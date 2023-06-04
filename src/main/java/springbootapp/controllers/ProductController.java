@@ -26,14 +26,20 @@ public class ProductController extends CrudController<Integer, ProductRequest, P
     }
 
     @CrossOrigin
+    @GetMapping("/filter-by-category/{id}/search-by-query/{query}")
+    List<Product> getByQuery(@PathVariable Integer id, @PathVariable String query) {
+        return productService.getByCategoryIdAndProductTitle(id, query);
+    }
+
+    @CrossOrigin
     @GetMapping("/search-by-query/{query}")
     List<Product> getByQuery(@PathVariable String query) {
         return productService.getByProductTitle(query);
     }
 
     @CrossOrigin
-    @GetMapping("/filter-by-category/{id}/search-by-query/{query}")
-    List<Product> getByQuery(@PathVariable Integer id, @PathVariable String query) {
-        return productService.getByCategoryIdAndProductTitle(id, query);
+    @GetMapping("/seller/{id}")
+    List<Product> getBySellerId(@PathVariable Integer id) {
+        return productService.getBySellerId(id);
     }
 }
