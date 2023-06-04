@@ -13,4 +13,6 @@ public interface ProductService extends CrudService<Integer> {
     List<Product> getByProductTitle(String query);
 
     List<Product> getByCategoryIdAndProductTitle(Integer id, String query);
+
+    void markAsDeletedById(Integer id);
 }

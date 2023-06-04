@@ -1,5 +1,6 @@
 package springbootapp.controllers;
 
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.web.bind.annotation.*;
 import springbootapp.base.CrudController;
 import springbootapp.models.Product;
@@ -41,5 +42,12 @@ public class ProductController extends CrudController<Integer, ProductRequest, P
     @GetMapping("/seller/{id}")
     List<Product> getBySellerId(@PathVariable Integer id) {
         return productService.getBySellerId(id);
+    }
+
+    @CrossOrigin
+    @Modifying
+    @PutMapping("/delete/{id}")
+    void markAsDeletedById(@PathVariable Integer id) {
+        productService.markAsDeletedById(id);
     }
 }
