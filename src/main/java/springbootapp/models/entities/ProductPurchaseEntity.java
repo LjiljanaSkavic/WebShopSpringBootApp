@@ -3,13 +3,15 @@ package springbootapp.models.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
+import springbootapp.base.BaseEntity;
 
 import java.sql.Timestamp;
 
 @Data
 @Entity
 @Table(name = "product_purchase")
-public class ProductPurchaseEntity {
+public class ProductPurchaseEntity implements BaseEntity<Integer> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
@@ -20,6 +22,7 @@ public class ProductPurchaseEntity {
     private String orderId;
 
     @Basic
+    @DateTimeFormat
     @Column(name = "date_time", nullable = false)
     private Timestamp dateTime;
 
