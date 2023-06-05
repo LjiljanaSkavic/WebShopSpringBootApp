@@ -8,4 +8,6 @@ import java.util.List;
 public interface ProductPurchaseService extends CrudService<Integer> {
 
     List<ProductPurchase> getByCustomerId(Integer id);
+
+    void markAsDeletedById(Integer id);
 }

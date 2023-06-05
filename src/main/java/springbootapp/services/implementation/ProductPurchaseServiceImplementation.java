@@ -26,4 +26,9 @@ public class ProductPurchaseServiceImplementation extends CrudJpaService<Product
     public List<ProductPurchase> getByCustomerId(Integer id) {
         return this.repository.getByCustomerId(id).stream().map(e -> modelMapper.map(e, ProductPurchase.class)).collect(Collectors.toList());
     }
+
+    @Override
+    public void markAsDeletedById(Integer id) {
+        this.repository.markAsDeletedById(id);
+    }
 }
