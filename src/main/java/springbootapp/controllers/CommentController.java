@@ -21,8 +21,6 @@ public class CommentController extends CrudController<Integer, Comment, Comment>
     @CrossOrigin
     @GetMapping("/product/{id}")
     public List<Comment> getCommentsForProduct(@PathVariable Integer id) {
-        System.out.println("product id" + id);
-        System.out.println(commentService.getAllCommentsByProductId(id));
         return commentService.getAllCommentsByProductId(id);
     }
 
