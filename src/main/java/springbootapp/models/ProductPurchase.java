@@ -10,5 +10,5 @@ public class ProductPurchase {
     private String orderId;
     private Timestamp dateTime;
     private Boolean isDeleted;
-    private Boolean paymentType;
+    private Integer paymentType;
 }

@@ -32,7 +32,7 @@ public class ProductPurchaseEntity implements BaseEntity<Integer> {
 
     @Basic
     @Column(name = "payment_type", nullable = false)
-    private Boolean paymentType;
+    private Integer paymentType;
 
     @ManyToOne
     @JsonIgnore
