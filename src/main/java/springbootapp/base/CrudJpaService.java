@@ -47,7 +47,7 @@ public class CrudJpaService<E extends BaseEntity<ID>, ID extends Serializable> i
 
     @Override
     public <T, U> T insert(U object, Class<T> resultDTOClass) {
-
+        modelMapper.getConfiguration().setAmbiguityIgnored(true);
         E entity = modelMapper.map(object, entityClass);
         entity.setId(null);
         entity = repository.saveAndFlush(entity);
