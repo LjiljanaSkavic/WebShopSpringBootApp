@@ -35,7 +35,6 @@ public class ProductPurchaseEntity implements BaseEntity<Integer> {
     private Integer paymentType;
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false)
     private ProductEntity product;
 

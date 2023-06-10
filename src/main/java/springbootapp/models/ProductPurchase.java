@@ -11,4 +11,5 @@ public class ProductPurchase {
     private Timestamp dateTime;
     private Boolean isDeleted;
     private Integer paymentType;
+    private Product product;
 }
