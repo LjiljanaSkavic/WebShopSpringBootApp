@@ -34,7 +34,7 @@ public class ProductEntity implements BaseEntity<Integer> {
     private Boolean isDeleted;
 
     @Basic
-    @Column(name = "image", nullable = false)
+    @Column(name = "image", nullable = false, length = 500)
     private String image;
 
     @ManyToOne
