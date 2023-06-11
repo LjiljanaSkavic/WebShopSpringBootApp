@@ -6,6 +6,8 @@ import springbootapp.models.Product;
 import java.util.List;
 
 public interface ProductService extends CrudService<Integer> {
+    List<Product> getAll();
+
     List<Product> getByCategoryId(Integer id);
 
     List<Product> getBySellerId(Integer id);

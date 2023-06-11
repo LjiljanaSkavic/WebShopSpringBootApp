@@ -13,6 +13,9 @@ public interface ProductEntityRepository extends JpaRepository<ProductEntity, In
     @Query("select p from ProductEntity p where p.category.id=:id and p.isDeleted=false")
     List<ProductEntity> getByCategoryId(@Param("id") Integer id);
 
+    @Query("select p from ProductEntity p where p.isDeleted = false")
+    List<ProductEntity> getAll();
+
     //TODO: Check how to write this correctly
 //    @Query("WITH RECURSIVE category_tree AS (" +
 //            "SELECT c.id FROM CategoryEntity c WHERE c.id=:id " +
@@ -31,7 +34,7 @@ public interface ProductEntityRepository extends JpaRepository<ProductEntity, In
     @Query("select p from ProductEntity p where p.title LIKE CONCAT('%', :query ,'%') and p.id=:id and p.isDeleted=false")
     List<ProductEntity> getByCategoryIdAndProductTitle(@Param("id") Integer id, @Param("query") String query);
 
-    @Query("select p from ProductEntity p where p.sellerUser.id=:id")
+    @Query("select p from ProductEntity p where p.sellerUser.id=:id and p.isDeleted=false")
     List<ProductEntity> getBySellerId(Integer id);
 
     @Modifying

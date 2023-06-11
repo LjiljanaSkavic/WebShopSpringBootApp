@@ -21,6 +21,12 @@ public class ProductController extends CrudController<Integer, ProductRequest, P
     }
 
     @CrossOrigin
+    @GetMapping("/all")
+    List<Product> getAll() {
+        return productService.getAll();
+    }
+
+    @CrossOrigin
     @GetMapping("/filter-by-category/{id}")
     List<Product> getAllByCategory(@PathVariable Integer id) {
         return productService.getByCategoryId(id);
