@@ -37,7 +37,7 @@ public class UserEntity implements BaseEntity<Integer> {
     private String email;
 
     @Basic
-    @Column(name = "image_avatar", nullable = false, length = 500)
+    @Column(name = "image_avatar", length = 500)
     private String imageAvatar;
 
     @Basic
