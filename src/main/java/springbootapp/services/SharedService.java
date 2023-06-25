@@ -26,7 +26,8 @@ public class SharedService {
     }
 
     public Integer createActivationPin() {
-        Random rand = new Random();
-        return rand.nextInt((9999 - 100) + 1) + 10;
+        Random random = new Random();
+        String id = String.format("%04d", random.nextInt(10000));
+        return Integer.parseInt(id);
     }
 }
