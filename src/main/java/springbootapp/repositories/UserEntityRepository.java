@@ -18,10 +18,14 @@ public interface UserEntityRepository extends JpaRepository<UserEntity, Integer>
     Optional<UserEntity> getUserEntityByUsernameAndPassword(@Param("username") String username, @Param("password") String password);
 
     @Modifying
-    @Query("update UserEntity u set u.isActivated=true where u.id=:id")
+    @Query("update UserEntity u set u.isActivated=true, u.isLoggedIn=true where u.id=:id")
     void activateUser(@Param("id") Integer id);
 
     @Modifying
     @Query("update UserEntity u set u.isLoggedIn=true where u.id=:id")
     void loginUser(@Param("id") Integer id);
+
+    @Modifying
+    @Query("update UserEntity u set u.isLoggedIn=false where u.id=:id")
+    void logoutUser(@Param("id") Integer id);
 }

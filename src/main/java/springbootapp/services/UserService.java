@@ -9,4 +9,6 @@ public interface UserService extends CrudService<Integer> {
     void activateUser(Integer id);
 
     void loginUser(Integer id);
+
+    void logoutUser(Integer id);
 }

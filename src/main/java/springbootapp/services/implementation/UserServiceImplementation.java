@@ -36,4 +36,9 @@ public class UserServiceImplementation extends CrudJpaService<UserEntity, Intege
         repository.loginUser(id);
     }
 
+    @Override
+    public void logoutUser(Integer id) {
+        repository.logoutUser(id);
+    }
+
 }

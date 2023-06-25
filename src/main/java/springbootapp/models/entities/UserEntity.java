@@ -46,11 +46,11 @@ public class UserEntity implements BaseEntity<Integer> {
 
     @Basic
     @Column(name = "is_logged_in")
-    private Boolean isLoggedIn = false;
+    private Boolean isLoggedIn;
 
     @Basic
     @Column(name = "is_activated")
-    private Boolean isActivated = false;
+    private Boolean isActivated;
 
     @JsonIgnore
     @OneToMany(mappedBy = "senderUser")
