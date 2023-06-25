@@ -31,10 +31,4 @@ public class LoginController {
         }
         return this.userService.getByUsernameAndPassword(user.getUsername(), user.getPassword());
     }
-
-//    @PutMapping("/{id}")
-//    @ResponseStatus(HttpStatus.OK)
-//    public void activate(@PathVariable Integer id) throws NotFoundException {
-//        this.userService.loginUser(id);
-//    }
 }
