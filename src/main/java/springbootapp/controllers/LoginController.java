@@ -17,18 +17,21 @@ public class LoginController {
         this.userService = userService;
     }
 
-    @PutMapping
+    @PostMapping
     @ResponseStatus(HttpStatus.OK)
     public User update(@RequestBody LoginUser loginCredentials) throws NotFoundException {
-        User user = this.userService.getByUsernameAndPassword(loginCredentials.getUsername(), loginCredentials.getPassword());
-        System.out.println(user);
-        if (!user.getIsActivated()) {
-            this.userService.activateUser(user.getId());
-            System.out.println("activate user");
-        } else if (!user.getIsLoggedIn()) {
-            this.userService.loginUser(user.getId());
-            System.out.println("login user");
-        }
-        return this.userService.getByUsernameAndPassword(user.getUsername(), user.getPassword());
+        return this.userService.getByUsernameAndPassword(loginCredentials.getUsername(), loginCredentials.getPassword());
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void activate(@PathVariable Integer id) throws NotFoundException {
+        this.userService.activateUser(id);
+    }
+
+    @PutMapping("/mark-as-logged-in/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void setAsLoggedIn(@PathVariable Integer id) throws NotFoundException {
+        this.userService.loginUser(id);
     }
 }

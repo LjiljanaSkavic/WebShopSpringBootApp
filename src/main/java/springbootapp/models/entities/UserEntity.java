@@ -45,11 +45,11 @@ public class UserEntity implements BaseEntity<Integer> {
     private Integer activationPin;
 
     @Basic
-    @Column(name = "is_logged_in")
+    @Column(name = "is_logged_in", columnDefinition = "TINYINT(1)")
     private Boolean isLoggedIn;
 
     @Basic
-    @Column(name = "is_activated")
+    @Column(name = "is_activated", columnDefinition = "TINYINT(1)")
     private Boolean isActivated;
 
     @JsonIgnore

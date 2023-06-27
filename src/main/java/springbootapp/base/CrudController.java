@@ -39,7 +39,6 @@ public abstract class CrudController<ID extends Serializable, REQ, RESP> {
     @CrossOrigin
     @ResponseStatus(HttpStatus.CREATED)
     public RESP update(@PathVariable ID id, @RequestBody REQ object) throws NotFoundException {
-        System.out.println(object);
         return crudService.update(id, object, respClass);
     }
 

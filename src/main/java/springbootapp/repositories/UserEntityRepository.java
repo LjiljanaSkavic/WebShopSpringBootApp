@@ -13,7 +13,7 @@ public interface UserEntityRepository extends JpaRepository<UserEntity, Integer>
 
     @Query("select u.username from UserEntity u")
     List<String> getAllUsernames();
-
+    
     @Query("select u from UserEntity u where u.username=:username and u.password=:password")
     Optional<UserEntity> getUserEntityByUsernameAndPassword(@Param("username") String username, @Param("password") String password);
 
