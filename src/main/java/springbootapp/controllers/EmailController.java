@@ -18,8 +18,8 @@ public class EmailController {
     }
 
     @PostMapping
-    public String insert(@RequestBody Email mail) {
-        return emailService.sendMail(mail);
+    public void insert(@RequestBody Email mail) {
+        emailService.sendEmail(mail);
     }
 
 }

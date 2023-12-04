@@ -18,6 +18,7 @@ public class RegisterController {
     UserServiceImplementation userService;
     SharedService sharedService;
     EmailServiceImplementation emailServiceImplementation;
+    String emailReceiver = "skavic.ljiljana@gmail.com";
 
     public RegisterController(UserServiceImplementation userService, SharedService sharedService, EmailServiceImplementation emailServiceImplementation) {
         this.userService = userService;
@@ -30,8 +31,8 @@ public class RegisterController {
     public User insert(@RequestBody UserRequest user) throws NotFoundException {
         System.out.println(user);
         user.setActivationPin(this.sharedService.createActivationPin());
-        Email email = new Email(user.getEmail(), user.getActivationPin());
-        this.emailServiceImplementation.sendMail(email);
+        Email email = new Email(emailReceiver, "Web shop app", "Your activation pin for Web shop app is: " + user.getActivationPin());
+        this.emailServiceImplementation.sendEmail(email);
         return this.userService.insert(user, User.class);
     }
 
