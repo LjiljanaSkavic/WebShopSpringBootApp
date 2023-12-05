@@ -29,11 +29,19 @@ public class RegisterController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public User insert(@RequestBody UserRequest user) throws NotFoundException {
-        System.out.println(user);
         user.setActivationPin(this.sharedService.createActivationPin());
         Email email = new Email(emailReceiver, "Web shop app", "Your activation pin for Web shop app is: " + user.getActivationPin());
         this.emailServiceImplementation.sendEmail(email);
         return this.userService.insert(user, User.class);
+    }
+
+    @PutMapping("/activate/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public int sendEmail(@PathVariable Integer id) throws NotFoundException {
+        int activationPin = this.sharedService.createActivationPin();
+        Email email = new Email(emailReceiver, "Web shop app", "Your activation pin for Web shop app is: " + activationPin);
+        this.emailServiceImplementation.sendEmail(email);
+        return activationPin;
     }
 
     @PutMapping("/{id}")

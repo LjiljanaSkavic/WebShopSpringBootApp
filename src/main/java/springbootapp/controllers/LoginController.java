@@ -29,6 +29,13 @@ public class LoginController {
         this.userService.activateUser(id);
     }
 
+    @PutMapping("/activate/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public User activateAndRetreiveUser(@PathVariable Integer id) {
+        userService.activateUser(id);
+        return userService.getById(id);
+    }
+
     @PutMapping("/mark-as-logged-in/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void setAsLoggedIn(@PathVariable Integer id) throws NotFoundException {

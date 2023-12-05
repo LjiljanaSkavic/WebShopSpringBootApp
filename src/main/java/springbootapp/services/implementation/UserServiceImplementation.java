@@ -27,6 +27,11 @@ public class UserServiceImplementation extends CrudJpaService<UserEntity, Intege
     }
 
     @Override
+    public User getById(Integer id) throws NotFoundException {
+        return this.modelMapper.map(repository.getById(id), User.class);
+    }
+
+    @Override
     public void activateUser(Integer id) throws NotFoundException {
         repository.activateUser(id);
     }
