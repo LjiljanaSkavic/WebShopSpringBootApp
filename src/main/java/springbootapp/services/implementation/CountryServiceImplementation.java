@@ -9,8 +9,15 @@ import springbootapp.services.CountryService;
 
 @Service
 public class CountryServiceImplementation extends CrudJpaService<CountryEntity, Integer> implements CountryService {
+    CountryEntityRepository repository;
 
     public CountryServiceImplementation(CountryEntityRepository repository, ModelMapper modelMapper) {
         super(repository, modelMapper, CountryEntity.class);
+        this.repository = repository;
+    }
+
+    @Override
+    public boolean findByName(String name) {
+        return this.repository.getCountryEntityByName(name).isPresent();
     }
 }
