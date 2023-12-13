@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Timestamp;
 import java.util.Random;
 
 @Service
@@ -29,5 +30,10 @@ public class SharedService {
         Random random = new Random();
         String id = String.format("%04d", random.nextInt(10000));
         return Integer.parseInt(id);
+    }
+
+    public Timestamp getDateTime() {
+        long currentTimeMillis = System.currentTimeMillis();
+        return new Timestamp(currentTimeMillis);
     }
 }
